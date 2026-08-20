@@ -156,7 +156,9 @@ export async function loadSprites(): Promise<void> {
             resolve();
           };
           image.onerror = () => resolve();
-          image.src = src;
+          // BASE_URL: em produção o site vive num subcaminho (GitHub Pages),
+          // e o Vite não reescreve caminhos montados em runtime como estes.
+          image.src = import.meta.env.BASE_URL.replace(/\/$/, "") + src;
         }),
     ),
   );
