@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-  base: process.env.GITHUB_ACTIONS ? '/evil-enemy-defense/' : '/',
-});
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/evil-enemy-defense/' : '/',
+}));
